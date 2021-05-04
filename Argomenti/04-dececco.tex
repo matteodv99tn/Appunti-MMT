@@ -1,0 +1,23 @@
+\chapter{Riduzione dell'influenza dei disturbi}
+\section{Modello dell'influenza dei disturbi}
+	In primo luogo è necessario \de{modellare} l'\de{influenza} dei \de{disturbi} su un sistema; noto l'\textbf{ingresso desiderato} $g_i$ e considerando un modello linearizzato (l'uscita dal modello è $k$ volte l'ingresso). Introducendo un \de{ingresso modificante} $d_m$ amplificato di un valore $k_m$ modifica l'uscita definitiva del sistema
+	
+	\textbf{DA FARE}
+	
+\section{Metodi di riduzione degli effetti di disturbo}
+	Per ridurre gli effetti di disturbo modificante $d_m$ e interferente $d_i$ è possibile sfruttare diversi tipi di principi e metodologie, che possono basarsi sulle sensibilità degli stessi, sui loro modelli...
+	
+	\subsubsection{Metodo dell'insensibilità intrinseca}
+		Questo non è un vero e proprio metodo per la riduzione dei rumori nel senso stretto del termine, ma si basa sull'idea di annullare le sensibilità intrinseche $K_m$ e $K_m$ rispettivamente dei disturbi modificanti ed interferenti.
+		
+		Considerando l'esempio di un metro graduato per effettuare misure di distanza, esso è soggetto molto alle variazioni di temperatura (per esempio un metro in plastica che a $20^\circ C$ misura $1m$, a $40^\circ C$ la stessa tacca di riferimento misurerebbe $1.02m$). Per ovviare a questo tipo di problema è possibile realizzare i metri in metallo \texttt{invar} la cui proprietà caratteristica è il coefficiente di dilatazione termica prossimo allo zero: questo permette di limitare le variazioni di lunghezza del metro con il cambiare della temperatura, riducendo al minimo le sensibilità estrinseca. \\ I problemi legati all'utilizzo di questa particolare lega metallica sono legati all'elevato costo sia del materiale, sia alla lavorazione dello stesso (per via della scarsa lavorabilità del metallo) e dunque utilizzato solo in laboratori di metrologia per tarare altri strumenti.
+		
+	\subsubsection{Metodo delle correzioni calcolate (modellate)}
+		Il \de{metodo delle correzioni calcolate} si basa sull'idea di determinare sia le sensibilità $K_i, K_m$, ma anche i disturbi modificanti $d_m$ e interferenti $d_i$, con l'idea finale di invertire il modello che considera tali fattori.
+		
+		Un esempio applicativo di questo metodo è quello associato al manometro differenziale inclinato (\textbf{aggiungere il riferimento all'esempio da fare}); in generale l'angolo di inclinazione $\alpha$ sarebbe un disturbo $d$ che potrebbe rendere difficoltosa la misura precisa del misurando. Tuttavia integrando sul manometro un inclinometro che permette di determinare $\alpha$, questo valore non è più un disturbo incognito e può essere modellato. \\ 
+		Nota l'inclinazione $\alpha$ del tubo, geometricamente è possibile determinare la quota $h_0$ che si istituisce tra i due tubi quando la differenza di pressione sui tubi è nulla con legge $h_0 = L\tan\alpha$. Come osservato nell'esempio, la quota $h^*$ che si misura a tubo inclinato dipende dalla pressione secondo la legge $h^* = \frac{\Delta p}{\rho g \cos\alpha}$; a questo punto il misurando $h$ può essere espresso come
+		\[ h = h_0 + h^* = L\tan\alpha + \frac{\Delta p}{\rho g \cos\alpha} \]
+		Invertendo questa nuova relazione si può determinare il valore del misurando $\Delta p$ in funzione del dislivello misurato $h$ secondo la legge
+		\[ \Delta p = \big(h-L\tan\alpha\big) \rho g \cos\alpha \]
+		dove $\alpha$ non è più un disturbo ma un parametro del problema determinato dall'inclinometro.

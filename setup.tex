@@ -1,0 +1,190 @@
+\usepackage[width=15.00cm, height=25.00cm]{geometry}
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{dsfont}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{paracol}
+\usepackage{xparse}
+\usepackage{sidecap}
+\usepackage[makeroom]{cancel}
+\usepackage{capt-of}
+\usepackage{caption}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{xpatch}
+\usepackage{subcaption}
+\usepackage[most]{tcolorbox}
+\usepackage{lipsum}
+\usepackage{float}
+\usepackage{imakeidx}
+\usepackage{wrapfig}
+\usepackage[shortlabels]{enumitem}
+\usepackage{marginnote}
+\usepackage{tickzit}
+\usepackage{bm}
+\usepackage{textcomp}
+%\usepackage{enumerate}
+
+\input{stilifigure.tikzstyles}
+%\makeindex[columns=3, title=Indice Analitico, intoc]
+
+
+\graphicspath{{Immagini/}}
+\setcolumnwidth{0.3\textwidth}
+
+\captionsetup{font = {it, small}, labelfont={color=NavyBlue, bf}}
+
+
+\newcommand{\four}[1]{\mathfrak F \left(#1\right)}
+\newcommand{\antif}[1]{\mathfrak F^{-1} \left(#1\right)}
+\newcommand{\ov}{\boldsymbol}
+\newcommand{\med}{\textrm{med}}
+\newcommand{\rng}{\textrm{rng}}
+\newcommand{\cov}{\textrm{cov}}
+\newcommand{\pval}{p\textrm{-value}}
+\newcommand{\vett}[1]{\boldsymbol{#1}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newcommand{\de}[1]{\textbf{\textcolor{NavyBlue}{#1}}}
+\newcommand{\figura}[5]{\begin{SCfigure}[#2][b!h!t!]
+		\centering
+		\includegraphics[width=#1 cm]{#3}
+		\caption{#4} \label{#5}
+\end{SCfigure}}
+
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+
+
+\newcounter{concetti}
+\newenvironment{concetto}{
+	\refstepcounter{concetti}
+	{\color{NavyBlue}\textbf{Concetto \theconcetti:}} \quad
+}{
+	
+}
+\numberwithin{concetti}{chapter}
+\tcolorboxenvironment{concetto}{
+	boxrule=0pt,
+	boxsep=0pt,
+	colback={White!90!NavyBlue},
+	enhanced jigsaw, 
+	borderline west={2pt}{0pt}{NavyBlue},
+	sharp corners,
+	before skip=5pt,
+	after skip=10pt,
+	breakable,
+}
+
+
+\newenvironment{dimostrazione}{
+	\noindent
+	{\color{YellowGreen}\textbf{Dimostrazione:}}
+}{
+}
+\tcolorboxenvironment{dimostrazione}{
+	boxrule=0pt,
+	boxsep=0pt,
+	colback={White!100!YellowGreen},
+	enhanced jigsaw, 
+	borderline west={2pt}{0pt}{YellowGreen},
+	sharp corners,
+	before skip=5pt,
+	after skip=5pt,
+	breakable,
+}
+
+\newcounter{numnote}
+\numberwithin{numnote}{chapter}
+\newenvironment{nota}{
+	\noindent
+	\refstepcounter{numnote}
+	{\color{YellowGreen}\textbf{Nota \thenumnote:}}
+}{
+}
+\tcolorboxenvironment{nota}{
+	boxrule=0pt,
+	boxsep=0pt,
+	colback={White!90!YellowGreen},
+	enhanced jigsaw, 
+	borderline west={2pt}{0pt}{YellowGreen},
+	sharp corners,
+	before skip=5pt,
+	after skip=5pt,
+	breakable,
+}
+
+
+\newcounter{numrichiamo}
+\numberwithin{numrichiamo}{chapter}
+\newenvironment{richiamo}{
+	\noindent
+	\refstepcounter{numrichiamo}
+	{\color{ForestGreen}\textbf{Richiamo \thenumrichiamo:}}
+}{
+}
+\tcolorboxenvironment{richiamo}{
+	boxrule=0pt,
+	boxsep=0pt,
+	colback={White!90!ForestGreen},
+	enhanced jigsaw, 
+	borderline west={2pt}{0pt}{ForestGreen},
+	sharp corners,
+	before skip=5pt,
+	after skip=5pt,
+	breakable,
+}
+
+\newcounter{esempi}
+\numberwithin{esempi}{chapter}
+\newenvironment{esempio}[1]{
+	\noindent
+	\refstepcounter{esempi}
+	{\color{Periwinkle}\textbf{Esempio \theesempi#1} \\ } 
+	
+	
+	\noindent
+	\renewcommand{\de}[1]{\textbf{\textcolor{Periwinkle}{#1}}}
+}{
+}
+
+
+\tcolorboxenvironment{esempio}{
+	boxrule=0pt,
+	boxsep=0pt,
+	colback={White!90!Periwinkle},
+	enhanced jigsaw, 
+	borderline west={2pt}{0pt}{Periwinkle},
+	sharp corners,
+	before skip=10pt,
+	after skip=10pt,
+	breakable,
+}
+
+
+
+
+
+
+
+

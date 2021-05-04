@@ -1,0 +1,95 @@
+\chapter{Misure dinamica}
+	La \de{dinamica} tratta la misurazione di entità tempo varianti utilizzando la \de{trasformata di Fourier}.
+	
+\section{Trasformata di Fourier}
+	
+	\paragraph{Analogia con il caso vettoriale} La trasformata di Fourier può essere analizzata effettuando un'analogia con la scomposizione di un vettore $\ov v$ (nel piano) nelle sue due componenti; noti i versori della terna ortonormale $\ov e_1,\ov e_2$, il vettore $\ov v$ può essere espresso come una combinazione vettoriale del tipo
+	\begin{equation} \label{eq:four:vettcombinazione}
+		\ov v = \alpha \ov e_1 + \beta \ov e_2
+	\end{equation}
+	A questo punto è necessario determinare i valori dei coefficienti $\alpha,\beta$ che rappresentano le coordinate di $\ov v$ nella base dei vettori $\ov e_1,\ov e_2$: questo a livello vettoriale può essere effettuato considerando il prodotto scalare tra vettori come segue
+	\begin{equation} \label{eq:four:vettcoordinate}
+		\alpha = \ov v \cdot \ov e_1 \qquad \beta = \ov v \cdot \ov e_2
+	\end{equation}
+	A questo punto il vettore $\ov v$ nel sistema di riferimento associato può essere scritto come una $2-$upla composta dalle sue coordinate nella base associata:
+	\begin{equation} \label{eq:four:vettrappresentazione}
+		\ov v = \begin{bmatrix}
+			 \alpha \\ \beta
+		\end{bmatrix}
+	\end{equation}
+	
+	\paragraph{Sviluppo in serie} Lo \de{sviluppo in serie di Fourier} permette di rappresentare un segnale periodico $g(t)$ di periodo $T$ tramite un'opportuna sovrapposizione di segnali (co)sinusoidali con frequenza multipla all'\de{armonica fondamentale} $f_0 = 1/T$:
+	\begin{equation}
+		g(t) = \frac 1 2 a_0 + \sum_{n=1}^\infty a_n \cos\big(\omega_n t\big) + \sum_{n=1}^\infty b_n\sin\big(\omega_n t\big) \qquad \textrm{con } \omega_n = 2\pi f_0
+	\end{equation}
+	
+	Questa equazione può dunque essere pensata per analogia alla scomposizione vettoriale (eq. \ref{eq:four:vettcombinazione}) dove le componenti $a_i,b_i$ sono associati ai vari segnali (co)sinusoidali che si dimostrano formare una \textbf{base ortogonale}.
+	
+	{\itshape \textbf{DIMOSTRAZIONE ORTOGONALITÀ} DA RIVEDERE in quanto
+	\begin{itemize}
+		\item $\sin\big(\omega_n t\big) \sin(\omega_n t) = 1$ 
+		\item $\cos\big(\omega_n t\big) \cos(\omega_n t) = 1$ 
+		\item $\sin\big(\omega_n t\big) \cos(\omega_n t) = 0$ 
+		\item $\sin\big(\omega_n t\big) \sin(\omega_j t) = 0$ per ogni $i\neq j$
+		\item $\cos\big(\omega_n t\big) \cos(\omega_j t) = 0$ per ogni $i\neq j$
+	\end{itemize}
+	}
+
+
+	A questo punto è necessario definire un'operazione analoga all'equazione \ref{eq:four:vettcoordinate} per determinare il valore delle \textit{coordinate} $a_n,b_n$ della serie di Fourier in funzione della funzione periodica $g(t)$ in ingresso alla trasformata che si dimostra essere associate alle relazioni
+	\begin{equation}
+		a_n = \frac 2 T \int_0^T g(t) \cos\big(\omega_n t\big) \, dt \qquad b_n = \frac 2 T \int_0^T g(t) \sin\big(\omega_n t\big) \, dt
+	\end{equation}
+	
+	\textbf{RIVEDERE LA DIMOSTRAZIONE}
+	
+	E' possibile \de{rappresentare} le funzioni discrete delle componenti $a_n,b_n$ della scomposizione del segnale periodico $g(t)$ tramite la trasformata di Fourier.
+	
+	E' possibile utilizzare la \de{formula di Eulero} per esprimere i seni e i coseni attraverso i fasori secondo al legge:
+	\[ e^{j\omega t} = \cos (\omega t) + j \sin(\omega t)\]
+	Con questa notazione è possibile riscrivere sia il seno che il coseno come
+	\[\cos\big(\omega_n t) = \frac{e^{j\omega_n t} + e^{-j\omega_n t}}{2} \qquad \sin\big(\omega_n t) = \frac{e^{j\omega_n t} - e^{-j\omega_n t}}{2j}\]
+	
+	Sostituendo queste relazioni fasoriali nell'espressione della serie di Fourier (\textbf{RIFERIEMNTO}) si ottiene l'equazione
+	\begin{equation}
+		\begin{split}
+		g(t) & = \frac 1 2 a_0 + \sum_{i=0}^\infty a_n \frac{e^{j\omega_n t} + e^{-j\omega_n t}}{2} + \sum_{i=0}^\infty b_n \frac{e^{j\omega_n t} - e^{-j\omega_n t}}{2j} \\
+		& = \frac 1 2 a_0 + \frac 1 2 \sum_{n=1}^\infty \big(a_n - j b_n\big)e^{j\omega_nt} + \frac 1 2 \sum_{n=1}^\infty \big(a_n + j b_n\big) e^{-j\omega_nt}
+		\end{split}
+	\end{equation}
+	In particolare dunque i fasori $e^{j\omega_nt}$ e $e^{-j\omega_nt}$ sono le funzioni rispetto alle quali scomponiamo $g(t)$ mentre i termini $a_n -jb_n$ e $a_n +jb_n$ sono le componenti; osservando che le componenti sono dei numeri complessi coniugati è possibile riscrivere in forma compatta:
+	\begin{equation}
+	g(t) = \sum_{n=-\infty}^{+\infty} G_n e^{j\omega_n t} \qquad \leftarrow \quad G_n = \begin{cases}
+	\textbf{inserire}
+	\end{cases}
+	\end{equation}
+	Un modo alternativo per calcolare i coefficienti $G_n$ con questa nuova formulazione utilizzando sempre l'\textit{idea} del prodotto scalare con le componenti ortogonali:
+	\[ G_n = g(t) \cdot e^{j\omega_nt}= \frac 1 T \int_0^T g(t) \cdot \left(e^{j\omega_n t} \right)^*\ \, dt\ = \frac 1 T \int_0^T g(t) e^{-j\omega_n t} , dt\]
+	Questa funzione può essere rappresentata più facilmente rappresentando in due diagrammi il modulo e la fase dei fasori nel segnale.
+	
+	\textbf{RIVEDERE LA LEZIONE}
+	
+	\paragraph{Trasformata di una funzione senza periodo} Una funzione che non ha periodo può essere modellata come una funzione di periodo infinito $T\rightarrow \infty$ (o periodo associato al tempo di misurazione del segnale).
+	Considerando il coefficiente $A_n$ definito come
+	\[A_n : = G_n T = \int_0^T g(t) e^{-j\omega_nt}\, dt\]
+	allora è possibile riscrivere la trasformata di Fourier come
+	\[ g(t) = \frac 1 T \sum_{n=-\infty}^\infty A_n e^{j\omega_n t} \]
+	Ponendo $T\rightarrow \infty$ allora è possibile calcolare i coefficienti $A_n$ come
+	\[A_n \xrightarrow{T\rightarrow\infty} \int_0 ^\infty g(t)e ^{-j\omega_nt}\, dt \qquad \Rightarrow g(t) \xrightarrow{T\rightarrow \infty} \int_0^\infty A(\omega) e^{i\omega_n t} \underbrace{\frac 1 T}_{df} = \int_0^\infty A(\omega) e^{i\omega t}\, df = \frac 1 {2\pi}\int_0^\infty G(\omega) e^{i\omega t}\, d\omega \]
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

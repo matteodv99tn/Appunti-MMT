@@ -1,0 +1,61 @@
+\chapter{Misura di spostamento}
+
+\section{Encoder ottici}
+
+\section{Potenziometro}
+	Il \de{potenziometro} è un trasduttore della misura ingresso-spostamento che viene trasdotta in una tensione elettrica; il moto dei corpi Potenziometroviene caratterizzato dalle grandezze di spostamento, velocità e accelerazione (le ultime possono essere ricavate per derivazione). Essi permettono inoltre di misurare degli spostamenti sia assoluti che relativi, ma anche di tipo lineare o angolare.
+	
+	I \textbf{potenziometri} possono essere a \de{traslazione} che si basano sulla traslazione di un cursore, il potenziometro a \de{rotazione ad un giro} (analogo a quello di traslazione che tuttavia misura variazioni angolari) e \de{a rotazione ad elica} (permette di misurare più giri).
+	
+	\paragraph{Potenziometro rotativo} \textbf{FIGURA}
+	
+	Un potenziometro rotativo è un componente a 3 \textit{pin}: i due più esterni sono collegati alla tensione di alimentazione, mentre il pin centrale presenta la tensione in uscita ottenuta dal partitore di tensione della resistenza interna del potenziometro.
+	
+	La resistenza interna è tendenzialmente realizzata da polveri ceramiche/plastiche. Il modello ideale del potenziometro è dunque quello del partitore di tensione la cui somma delle resistenze è pari alla resistenza nominale $R_p$. La ripartizione della resistenza complessiva dipende dunque dalla posizione del cursore dipendente dal misurando del sistema.
+	
+	Nota la lunghezza $L$ della corsa e la posizione $x$ del cursore, allora il partitore è composto dalle resistenze
+	\[ R_1 = R_p \frac{L-x}{L} \qquad R_2 = R_p \frac x L\]
+	Dall'equazione del partitore (dove $V_{dd}$ è la tensione di alimentazione del circuito) è possibile scrivere la tensione in uscita nel caso ideale come 
+	\begin{equation} \label{eq:pot:ideale}
+		V_{out}= V_{dd} \frac{R_2}{R_1+R_2} = V_{dd} \frac{x}{L-x+x} = V_{dd} \frac x L
+	\end{equation}
+	
+	Il modello ottenuto è lineare, tuttavia facendo la taratura di un sistema reale si osserva uno scostamento dal caso ideale che può essere tuttavia modellato da una resistenza $R_m$ che rappresenta il carico esterno (dovuta all'oggetto che effettua la misurazione della tensione).
+	
+	\textbf{INSERIRE SCHEMA MODELLO REALE} 
+	
+	A questo punto il partitore di tensione è dato dalla resistenza $R_1$ e dal parallelo di $R_2$ con $R_m$ pari a 
+	\[ R_2 \parallel R_m = \frac{R_mR_p \frac x L}{R_m + R_p \frac x L} \qquad\]
+	Questo permette di ottenere un nuovo modello che considera anche la resistenza di carico $R_m$ come
+	\[ V_{out} = V_{dd} \frac{R_2\parallel R_m}{ R_1 + R_2\parallel R_m} = V_{dd} \frac{x/L}{1 + \dfrac{R_p}{R_m} \dfrac{x}{L} \left(1 - \dfrac x L\right)   } \]
+	A questo punto è possibile osservare che un modello più realistico non è più lineare (rispetto al misurando $x$) come il modello ottenuto in prima battuta in equazione \ref{eq:pot:ideale}. In particolare nel caso in cui $R_m \rightarrow \infty$ (resistenza di carico infinita) allora il comportamento risulterebbe essere approssimato al caso ideale con caratteristica di uscita lineare. Un altro modo per ottenere valori reali \textit{simili} al comportamento ideale sarebbe quello di avare una resistenza complessiva $R_p$ tendente a zero (richiesta che si scontra con la realizzazione pratica dei potenziometri reali).
+	
+	\textbf{FIGURA DEL COMPORTAMENTO REALE}
+	
+	In particolare il problema di scegliere un valore $R_p$ si ottiene una sensibilità bassa in quanto sarebbe limitata  la tensione $V_{dd}$ di alimentazione del meccanismo. Ogni resistenza può infatti dissipare una potenza massima $P$, ed essendo che la caduta di tensione alla stessa $V$ allora si ricava che
+	\[P = \frac{V^2}{R_p} \qquad \Rightarrow \quad V = \sqrt{PR_p}\]
+	Dunque se $R_p$ piccolo, allora necessariamente $V_{dd}$ è bassa: questo porta ad un'abbassamento della pendenza della caratteristica di uscita che diminuisce la sensibilità del sistema. Inoltre il problema è anche termico in quanto se la potenza da dissipare è eccessiva, il dispositivo potrebbe andare incontro a rottura.
+	
+	\textbf{FARE TABELLA DEL PERCHÈ SI SCEGLIE RP}
+	
+	\paragraph{Sensibilità al contatto} Un possibile problema del funzionamento del potenziometro è quello dovuto alla sensibilità del contatto dovuto alle vibrazioni meccaniche. Per eliminare questo problema è possibile immergere il cursore nell'olio (che funge da smorzatore di oscillazioni) oppure equipaggiare il potenziometro con due testine con modi di vibrazione disaccoppiati.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
