@@ -319,32 +319,47 @@
 		Si osserva dunque che l'assenza di alcune armoniche nella trasformata dell'ingresso comporta un errore nel determinare il modulo della funzione di trasferimento $M_H$.		
 	
 	\subsection{Tecniche nel dominio del tempo}
+		\subsubsection{Ingressi canonici e modello matematico}
+		Supponendo di conoscere il modello matematico del sistema di misura che si vuole tarare, è possibile effettuare tale operazione tramite regressione minimizzando gli scarti quadratici medi di ingressi canonici.
 		
-	
-	
-	\paragraph{Modello noto} Considerando di conoscere il modello dello strumento, per effettuare la taratura dinamica è possibile utilizzare degli ingressi canonici effettuando la taratura minimizzando gli scarti quadratici medi.
-	
-	Considerando per esempio una sonda \texttt{PT100} per la misura della temperatura realizzata da un filo trasduttore in platino, è possibile calcolare l'energia $E$ dello strumento posto a temperatura assoluta $T$ e il flusso di calore tra sonda e ambiente $P$ come
-	\[E=mc T \qquad P = \alpha A \big(T_{amb} - T\big) \]
-	Il modello matematico del problema è dato dall'equazione differenziale
-	\[ \frac{dE}{dt} = P \qquad \rightarrow \quad mc \frac {dT}{dt} = \alpha A \big(T_{amb} - T \big)  \]
-	Trasformando questa equazione nel dominio della frequenza tramite Fourier si ricava che
-	\[ u\omega m c = \alpha A \big(T_{amb}(\omega) \omega -T(\omega)\big) \qquad T(\omega) \big(i\omega m c + \alpha a\big) = \alpha A T_{amb}(\omega)\]
-	Dovendo misurare la temperatura $T_{amb}$ valutando la temperatura $T$ è possibile connotare la funzione di trasferimento come
-	\[ H(\omega) = \frac 1 {1 + i\omega \frac{mc}{\alpha A}}\]
-	dove $\frac{mc}{\alpha A} = \tau$ è l'unico parametro temporale del sistema che deve essere valutato tramite la taratura dinamica.
-	
-	Per la taratura si impone un ingresso a scalino inserendo la sonda (che stava libera all'aria) velocemente in un contenitore pieno di fluido caldo/freddo. L'inserimento che può richiedere $1/10s$ (e dunque $10Hz$) può essere considerato istantaneo se si misura che la costante di tempo $\tau$ del sistema di misura risulta valere $50s$(e dunque $0.02Hz \ll 10Hz$).
-	
-	Nel dominio del tempo è possibile calcolare la temperatura $T(t)$ misurata come
-	\[T(t) = \big(T_{iniz} - T_{fin}\big) e^{-t/\tau} + T_{fin} \]
-	Per ricavare il parametro $\tau$ del sistema è possibile ricorrere a più metodi:
-	\begin{enumerate}
-		\item il primo è basato sulla manipolazione dell'equazione algebrica che risolve l'equazione differenziale per l'ingresso allo scalino, in particolare si trovando la temperatura $T(\tau)$ associata al tempo $t=\tau$ si determina il valore della costante:
-		\[ T(\tau) = \big(T_{iniz} - T_{fin}\big) e^{-1} + T_{fin} \]
+		Considerando per esempio una sonda di temperatura \texttt{PT100} (filo trasduttore in platino) è possibile determinarne sia l'energia $E = mc T$ (dove $m$ è la massa di platino, $c$ la capacità termica del dispositivo e $T$ la temperatura assoluta del metallo), sia la potenza termica scambiata con il fluido in cui è immerso $P = \alpha A \big(T_f - T\big)$ (dove $\alpha$ è il coefficiente di scambio termico sull'area di contatto $A$ e $T_f$ è la temperatura del fluido che si vuole misurare). \\
+		Il flusso di calore $P$ rappresenta l'energia trasmessa nell'unità di tempo al sistema: è dunque possibile ricavare l'espressione differenziale che governa il problema in questione:
+		\[ \frac{dE}{dt} = P \qquad \rightarrow \quad mc \frac{dT}{dt}  = \alpha A \big(T_f - T \big)  \]
 		
-		\item \textit{riscalo temperatura per renderla lineare}
-	\end{enumerate}
+		Questa relazione differenziale lineare può dunque essere analizzata tramite le regole di trasformazione di Fourier; in particolare l'ingresso al sistema è la temperatura $T_f$ del fluido che si vuole misurare, mentre l'uscita che si rileva è la temperatura $T$ della sonda. Facendo il passaggio al dominio delle frequenze è possibile riscrivere l'equazione differenziale che darà vita alla funzione di trasferimento $H(\omega)$ del sistema:
+		\[ mc \, \omega T(\omega) = \alpha A \Big(T_f(\omega) - T(\omega)\Big) \qquad \Rightarrow \quad H(\omega) = \frac{T(\omega)}{T_f(\omega)} = \frac 1 {1+ i\omega \frac{mc}{\alpha A}} = \frac 1 {1+ i\omega \tau} \]
+		
+		Effettuare una taratura dinamica significa dunque determinare il rapporto $\tau = \frac {mc}{\alpha A}$ associato alla costante di tempo del transitorio del sistema.
+		
+		\vspace{3mm}
+		
+		La taratura dinamica può dunque essere fatta misurando la risposta allo scalino della sonda: tale test può essere effettuato inserendo velocemente la sonda fredda in un fluido molto caldo. Chiaramente l'inserzione del dispositivo nel bagno caldo non è un'operazione idealmente istantanea in quanto richiederà una frazione di secondo (per esempio se l'inserimento richiede $0.1s$, allora la frequenza associata sarà pari a $10Hz$), tuttavia tale effetto può essere trascurato se si osserva che la costante di tempo $\tau$ del sistema è molto più grande del tempo di inserimento (in generale $\tau \simeq 50s$ e la sua risposta in frequenza è pari a $0.02Hz$, molto minore dei $10Hz$ dell'inserimento della sonda nel bagno).
+		
+		\vspace{3mm}
+		
+		Tramite antitrasformazione è possibile determinare la soluzione dell'equazione differenziale nel dominio del tempo che risulta valere
+		\begin{equation} \label{eq:td:pt100}
+			T(t) = \left(T_\textrm{iniziale} - T_\textrm{finale}\right)e^{-t/\tau} + T_\textrm{finale}
+		\end{equation}
+	
+		\subsubsection{Determinazione della costante di tempo di un sistema dinamico}
+		A questo punto è necessario stabilire dei metodi per determinare la costante di tempo $\tau$ associata al sistema; per effettuare questa operazione di taratura è possibile, sempre facendo riferimento alla sonda di temperatura \texttt{PT100}, percorrere 3 strade distinte
+		\begin{enumerate}
+			\item Un primo metodo è quello di manipolare la soluzione dell'equazione differenziale; in particolare considerando la risposta allo scalino è possibile cercare, tramite manipolazione algebrica, quella temperatura $T(\tau)$ associata al tempo $t = \tau$ pari alla costante di tempo del sistema stesso; sostituendo infatti il valore $t= \tau$ nell'equazione \ref{eq:td:pt100} si ottiene l'espressione
+			\[ T(\tau ) = \left(T_i- T_f\right)e^{-1} + T_f \]
+			
+			Calcolando il tempo $t$ che impiega la sonda a misurare la temperatura $T(\tau)$, è possibile dunque stabilire il valore della costante di tempo.
+			
+			\item Un secondo metodo che si può utilizzare si basa sul riscalare l'asse delle ascisse in modo di avere un comportamento lineare rispetto al tempo; manipolando infatti l'equazione differenziale \eqref{eq:td:pt100} si può arrivare alla formulazione
+			\[ \frac{T(t) - T_f}{T_i-T_f} = e^{-t\tau} \qquad \Rightarrow \quad \ln \left( \frac{T(t) - T_f}{T_i-T_f}\right) = - \frac t \tau \]
+			Supponendo dunque di aver campionato la temperatura della sonda con una frequenza $f_c = 1/t_c$, è possibile riscrivere tale equazione 
+			\[ \ln \left( \frac{T(k \, t_c) - T_f}{T_i-T_f}\right) = - k \frac {t_c} \tau \qquad \forall k \ \textrm{campione}  \]
+			Si osserva dunque che questa equazione è lineare nel tempo (e nel dominio discretizzato lineare in $k$) con pendenza pari a $-t_c/\tau$: tramite interpolazione lineare è possibile dunque ricavare l'inverso della costante di tempo (noto il periodo di campionamento $T_c$).
+			
+			\item \textbf{MANCA IL TERZO METODO}
+			
+		\end{enumerate}
+	
 
 	\paragraph{Filtraggio online e offline} Si parla di \textbf{filtraggio online} quando l'operazione di filtraggio viene effettuata ad ogni campione in ingresso (\textit{processing in real time}), mentre si parla di \textbf{filtraggio offline} quando il filtraggio viene effettuato sull'insieme di dati già acquisiti.
 	
