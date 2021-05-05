@@ -272,6 +272,9 @@
 		
 		\figura{6}{1}{dft-simmetria}{esempio di DFT di un segnale; è possibile osservare la specularità dello spettro rispetto al punto medio.}{dft-simmetria}
 		
+		In particolare la discretizzazione con la trasformata di Fourier discreta avviene con l'operazione
+		\[ X[k] = \sum_{n=0}^{N-1} x[n] \, e^{-i\omega_k n} \qquad \omega_k = \frac {2\pi} N k \]
+		dove $N$ è il numero di campioni, $k$ è il \textit{bin number}, $n = 1,\dots, N$ è il \textit{sample number} (numero del campione) della funzione $x$.
 		
 \section{Taratura dinamica}
 	\marginnote{27/04/2021}
@@ -356,10 +359,12 @@
 			\[ \ln \left( \frac{T(k \, t_c) - T_f}{T_i-T_f}\right) = - k \frac {t_c} \tau \qquad \forall k \ \textrm{campione}  \]
 			Si osserva dunque che questa equazione è lineare nel tempo (e nel dominio discretizzato lineare in $k$) con pendenza pari a $-t_c/\tau$: tramite interpolazione lineare è possibile dunque ricavare l'inverso della costante di tempo (noto il periodo di campionamento $T_c$).
 			
-			\item \textbf{MANCA IL TERZO METODO}
-			
+			\item Il terzo e ultimo metodo mostrato si basa sull'effettuare la regressione ai minimi quadrati del modello del sistema (eq. \ref{eq:td:pt100}); nota la temperatura campionaria $T_k$ ottenuta dalla calibrazione, e noto il modello tramite l'equazione differenziale risolta, la taratura dinamica si basa sulla minimizzazione della somma $\Phi$ dei residui al quadrato in funzione del parametro $\tau$:
+			\[ \Phi(\tau) = \sum_{k=0}^N \left( T_k - \big(T_i-T_f\big)e^{-k t_c/ \tau} - T_f \right)^2 \]
+			Questa procedura può anche essere effettuata su sistemi di ordine maggiore con un maggior numero di parametro; in questo caso la minimizzazione sarà multivariabile.
 		\end{enumerate}
 	
+\section{Filtraggio dei segnali}
 
 	\paragraph{Filtraggio online e offline} Si parla di \textbf{filtraggio online} quando l'operazione di filtraggio viene effettuata ad ogni campione in ingresso (\textit{processing in real time}), mentre si parla di \textbf{filtraggio offline} quando il filtraggio viene effettuato sull'insieme di dati già acquisiti.
 	
@@ -399,10 +404,6 @@
 		Si osserva dunque che la funzione di trasferimento è del secondo ordine in quanto a denominatore contiene un termine $\omega^2$.
 		
 	\end{esempio}
-	
-	
-	
-	
 	
 	
 	
