@@ -172,7 +172,7 @@
 			\textrm{variazione di scala:}& \qquad x(at) \quad \mapsto \quad \frac 1 {|a|} X\left(\frac \omega a\right) \\
 		\end{align*}
 		
-	\subsection{Trasformata di un'equazione differenziale}
+	\subsection{Trasformata di un'equazione differenziale} \label{sec:four:eqdiff}
 		
 			Un vantaggio di utilizzare la \de{trasformata di Fourier} è che ci permette di \de{risolvere} agilmente \de{equazioni differenziali lineari}; considerando per esempio un'equazione differenziale lineare del secondo ordine, la sua formulazione generica uò essere ricondotta ad una  forma
 			\[ \frac{d^2\,y(t)}{dt^2} + a \frac{d\, y(t)}{dt} + b\, y(t) = c\,u(t)\]
@@ -405,10 +405,38 @@
 		
 	\end{esempio}
 	
+\section{Impedenze generalizzate}
+	Fino ad ora è stato mostrato come è possibile risolvere un'equazione differenziale lineare può essere risolta come equazione algebrica nel dominio delle frequenze (pag. \ref{sec:four:eqdiff}); l'idea attuale è dunque quella di \de{modellare} i \de{sistemi meccanici} \textbf{a parametri concentrati} convertendoli in \de{schemi alle impedenze generalizzate}.
 	
+	Questo metodo è comodo in quanto evita di impostare le equazioni differenziali per risolvere i problemi legato alla loro risoluzione, determinando così la funzione di trasferimento con metodologie analoghe a quelle usate per i circuiti elettronici.
 	
+	\paragraph{Conversione alle impedenze generalizzate} Corpi che possono essere considerati come indeformabili possono essere approssimati ad una sola \textbf{massa concentrata}, mentre gli elementi che si possono deformare (dove la massa si appoggia) può essere modellata come la combinazione di una \textbf{molla} e di uno \textbf{smorzatore}.
 	
+	In maniera generale ad ogni parametro concentrato corrisponde un'\textbf{impedenza generalizzata} che permette di relazionare, nel dominio della frequenza, la trasformata della \de{variabile di sforzo} (tensione nel caso elettrico) alla rispettiva \de{variabile di portata} (intensità di corrente nel caso elettrico).
 	
+	\begin{table}[bht]
+		\centering
+		\begin{tabular}{r|c|l}
+			\textbf{dominio fisico} & \textbf{variabile di sforzo} & \textbf{variabile di portata} \\ \hline
+			elettrico & tensione & corrente \\
+			meccanico & velocità & forza \\
+			meccanico rotazionale & velocità angolare & coppia \\ 
+			pneumatico & differenza di pressione & portata volumetrica
+		\end{tabular}
+		\caption{variabili di sforzo e di portata per vari domini fisici.}
+	\end{table}
+
+	La variabile di sforzo deve sempre assumere un valore riferito ai due terminali dell'impedenza, mentre la variabile di portata assume invece un valore che fluisce da un terminale all'altro attraverso l'elemento considerato; deve inoltre valere sempre che il prodotto tra variabile di sforzo e di portata sia sempre una \textbf{potenza}. L'\textbf{impedenza meccanica} è dunque il rapporto tra velocità (variabile di sforzo) e forza (variabile di portata).
+	
+	Nel campo meccanico la semplificazione a parametri concentrati è generalmente più \textit{importante} (non sempre è possibile trascurare l'effetto elastico del corpo), tuttavia per certe analisi le semplificazioni possono essere tollerate.
+	
+	\paragraph{Parametri concentrati nel sistema meccanico} Considerando la \textbf{massa}, la sua equazione differenziale che lega velocità $v$ e forza $f$ è $ma = m\dot v = F$ che nel dominio delle frequenze diventa l'equazione (e relativa impedenza)
+	\begin{equation}
+		F(\omega) = M\, i\omega\, V(\omega) \qquad \Rightarrow\quad Z_m (\omega) = \frac{V(\omega)}{F(\omega)} = \frac{1}{i\omega m}
+	\end{equation}
+	Stesse considerazioni possono essere effettuate per lo smorzatore la cui equazione differenziale è $f = cv$ e la molla $f = k \, \int v$, arrivando alle impedenze generalizzate
+	\[ Z_c(\omega) = \frac 1 c \qquad Z_k(\omega) = \frac {i\omega} k \]
+	Circuiti meccanici con la rappresentazione a parametri concentrati può essere risolto come un circuito elettrico; equivalentemente alla tensione di riferimento a terra, il corrispettivo nel caso meccanico è il sistema di riferimento inerziale.
 	
 	
 	
