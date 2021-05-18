@@ -272,65 +272,99 @@
 		
 		\figura{6}{1}{dft-simmetria}{esempio di DFT di un segnale; è possibile osservare la specularità dello spettro rispetto al punto medio.}{dft-simmetria}
 		
+		In particolare la discretizzazione con la trasformata di Fourier discreta avviene con l'operazione
+		\[ X[k] = \sum_{n=0}^{N-1} x[n] \, e^{-i\omega_k n} \qquad \omega_k = \frac {2\pi} N k \]
+		dove $N$ è il numero di campioni, $k$ è il \textit{bin number}, $n = 1,\dots, N$ è il \textit{sample number} (numero del campione) della funzione $x$.
 		
 \section{Taratura dinamica}
 	\marginnote{27/04/2021}
-	
-	Durante la taratura statica si effettua la stima dei coefficienti di una relazione matematica (tendenzialmente polinomiale) che lega il misurando con l'uscita dello strumento in condizioni statiche. Dualmente si effettua una \de{taratura dinamica} quando si vuole stimare i coefficienti delle relazioni che governano la dinamica tra misurando e uscita dello strumento. Questo problema è strettamente legato alla risoluzione di equazioni differenziali e, ipotizzando che le stesse siano lineari, è possibile dunque risolvere il problema utilizzandola trasformata di Fourier.
-	
-	La taratura dinamica si occupa di determinare i parametri della funzione complessa di trasferimento $H(\omega)$ del sistema di misura nel caso in cui:
-	\begin{itemize}
-		\item non si conosce il modello matematico ne i parametri del sistema di misura. In questo caso è necessario determinare la funzione di trasferimento direttamente nel dominio della frequenza in quanto nessuna informazione è nota a priori;
-		\item il modello matematico è noto, ma non i suoi parametri. In questo caso conoscendo l'equazione differenziale che regola la relazione ingresso-uscita è sufficiente stimare i parametri mediante delle tecniche nel dominio del tempo.
-	\end{itemize}
-	
-	\subsection{Tecniche nel dominio della frequenza}
-
-	Per effettuare la taratura è possibile imporre degli \textbf{ingressi armonici} variabili in ingresso; noto infatti l'ingresso $u(t) = \sin(\omega_0 t)$, allora l'uscita del sistema (per quanto visto dall'analisi di Fourier) dipende dalla funzione di trasferimento nel punto $\omega_0$ definita come $H(\omega_0) = M(\omega_0) e^{i\phi(\omega_0)}$ secondo la legge
-	\[ y(t) = M(\omega_0 ) \sin \big(\omega_0 t+ \phi(\omega_0) \big)\]
-	
-	Variando il parametro $\omega_0$ è possibile misurare sia i coefficienti $M(\omega)$, sia gli sfasamenti $\phi(\omega)$ e dunque per interpolazione è possibile ricavare il modello del sistema dinamico.
-	
-	Per generare i segnali sinusoidali armonici per sistemi meccanici si utilizza un cosiddetto \textit{shaker} (una forza sinusoidale può essere trasmessa da una barra magnetica immersa in un solenoide che, con una corrente alternata, impone un momento, e dunque una forza, sinusoidale), mentre per componenti elettrici è possibile costruire degli opportuni sistemi. Per sistemi di misura termici  non è possibile generare degli ingressi sinusoidali.
-	
-	\begin{nota}
-		In generale non tutti i sistemi da tarare possono essere analizzati imponento un ingresso sinusoidale di frequenza nota.	
-	\end{nota}
-	
-	Un altro modo per analizzare la funzione di trasferimento è quello di analizzare la risposta all'impulso del sistema in quanto essa rappresenta l'antitrasformata della funzione di trasferimento (per quanto visto in precedenza). Imponendo dunque un impulso e trasformando il segnale temporale conseguente nel dominio della frequenza si ottiene la funzione di trasferimento.
-	
-	\vspace{3mm}
-	\textbf{DA RIVEDERE UN PO LA DESCRIZIONE DI QUESTA PARTE}
-	
-	Supponendo invece di porre in ingresso un valore costante allora è possibile verificare che
-	\[ Y(\omega) = M_H( \omega) e^{i\phi_H(\omega)} \cancel{M_U(\omega)} e^{i\phi_U(\omega)} = M_H(\omega) e^{i \left[ \phi_H(\omega) + \phi_U(\omega) \right]}  \qquad \Rightarrow M_H(\omega) =M_Y(\omega)	\]
-	\textit{Si usano segnali qualsiasi per avere la certezza che $U\neq0$ per ogni frequenza $\omega$ in modo da non avere buchi nello spettro.}
-	
-	
-	
-	\paragraph{Modello noto} Considerando di conoscere il modello dello strumento, per effettuare la taratura dinamica è possibile utilizzare degli ingressi canonici effettuando la taratura minimizzando gli scarti quadratici medi.
-	
-	Considerando per esempio una sonda \texttt{PT100} per la misura della temperatura realizzata da un filo trasduttore in platino, è possibile calcolare l'energia $E$ dello strumento posto a temperatura assoluta $T$ e il flusso di calore tra sonda e ambiente $P$ come
-	\[E=mc T \qquad P = \alpha A \big(T_{amb} - T\big) \]
-	Il modello matematico del problema è dato dall'equazione differenziale
-	\[ \frac{dE}{dt} = P \qquad \rightarrow \quad mc \frac {dT}{dt} = \alpha A \big(T_{amb} - T \big)  \]
-	Trasformando questa equazione nel dominio della frequenza tramite Fourier si ricava che
-	\[ u\omega m c = \alpha A \big(T_{amb}(\omega) \omega -T(\omega)\big) \qquad T(\omega) \big(i\omega m c + \alpha a\big) = \alpha A T_{amb}(\omega)\]
-	Dovendo misurare la temperatura $T_{amb}$ valutando la temperatura $T$ è possibile connotare la funzione di trasferimento come
-	\[ H(\omega) = \frac 1 {1 + i\omega \frac{mc}{\alpha A}}\]
-	dove $\frac{mc}{\alpha A} = \tau$ è l'unico parametro temporale del sistema che deve essere valutato tramite la taratura dinamica.
-	
-	Per la taratura si impone un ingresso a scalino inserendo la sonda (che stava libera all'aria) velocemente in un contenitore pieno di fluido caldo/freddo. L'inserimento che può richiedere $1/10s$ (e dunque $10Hz$) può essere considerato istantaneo se si misura che la costante di tempo $\tau$ del sistema di misura risulta valere $50s$(e dunque $0.02Hz \ll 10Hz$).
-	
-	Nel dominio del tempo è possibile calcolare la temperatura $T(t)$ misurata come
-	\[T(t) = \big(T_{iniz} - T_{fin}\big) e^{-t/\tau} + T_{fin} \]
-	Per ricavare il parametro $\tau$ del sistema è possibile ricorrere a più metodi:
-	\begin{enumerate}
-		\item il primo è basato sulla manipolazione dell'equazione algebrica che risolve l'equazione differenziale per l'ingresso allo scalino, in particolare si trovando la temperatura $T(\tau)$ associata al tempo $t=\tau$ si determina il valore della costante:
-		\[ T(\tau) = \big(T_{iniz} - T_{fin}\big) e^{-1} + T_{fin} \]
 		
-		\item \textit{riscalo temperatura per renderla lineare}
-	\end{enumerate}
+		Durante la taratura statica si effettua la stima dei coefficienti di una relazione matematica (tendenzialmente polinomiale) che lega il misurando con l'uscita dello strumento in condizioni statiche. Dualmente si effettua una \de{taratura dinamica} quando si vuole stimare i coefficienti delle relazioni che governano la dinamica tra misurando e uscita dello strumento. Questo problema è strettamente legato alla risoluzione di equazioni differenziali e, ipotizzando che le stesse siano lineari, è possibile dunque risolvere il problema utilizzandola trasformata di Fourier.
+		
+		La taratura dinamica si occupa di determinare i parametri della funzione complessa di trasferimento $H(\omega)$ del sistema di misura nel caso in cui:
+		\begin{itemize}
+			\item non si conosce il modello matematico ne i parametri del sistema di misura. In questo caso è necessario determinare la funzione di trasferimento direttamente nel dominio della frequenza in quanto nessuna informazione è nota a priori;
+			\item il modello matematico è noto, ma non i suoi parametri. In questo caso conoscendo l'equazione differenziale che regola la relazione ingresso-uscita è sufficiente stimare i parametri mediante delle tecniche nel dominio del tempo.
+		\end{itemize}
+		
+	\subsection{Tecniche nel dominio della frequenza}
+		\subsubsection{Ingressi armonici variabili in frequenza}
+		Per effettuare la taratura è possibile imporre degli \textbf{ingressi armonici} variabili in ingresso; noto infatti l'ingresso $u(t) = \sin(\omega_0 t)$, allora l'uscita del sistema (per quanto visto dall'analisi di Fourier) dipende dalla funzione di trasferimento nel punto $\omega_0$ definita come $H(\omega_0) = M(\omega_0) e^{i\phi(\omega_0)}$ secondo la legge
+		\[ y(t) = M(\omega_0 ) \sin \big(\omega_0 t+ \phi(\omega_0) \big)\]
+		
+		Variando il parametro $\omega_0$ è possibile misurare sia i coefficienti $M(\omega)$, sia gli sfasamenti $\phi(\omega)$ e dunque per interpolazione è possibile ricavare il modello del sistema dinamico.
+		
+		Il problema di questa metodologia di taratura della funzione di trasferimento è la necessità di imporre in ingresso segnali armonici puri ad una pulsazione $\omega_0$; nel caso di circuiti elettrici questo può essere fatto con una certa precisione, mentre per altri sistemi (come quelli meccanici e termici) l'operazione non può essere fatta tanto facilmente.\\
+		Nel caso di sistemi meccanici in particolare si utilizzano i cosiddetti \textit{shaker}, degli agitatori  elettrodinamici che producono moti armonici di spostamento/velocità/accelerazione.
+			
+		\begin{nota}
+			In generale non tutti i sistemi da tarare possono essere analizzati imponento un ingresso sinusoidale di frequenza nota.	
+		\end{nota}
+	
+	\subsubsection{Rapporto delle trasformate}
+		Considerato che un segnale impulsivo ideale, rappresentanto dalla funzione $\delta(t)$ delta di Dirac, presenta tutte le armoniche con impulso unitario e sfasamento nullo, è possibile determinare la funzione di trasferimento $H(\omega)$ come la risposta al sistema all'impulso:
+		\[ Y(\omega) = H(\omega)\, U(\omega) \quad \xrightarrow{U(\omega) = 1 \ \forall \omega} \quad H(\omega ) = Y(\omega) \]
+		Questo ci permette di capire che, tramite trasformazione della risposta $y(t)$ del sistema, è possibile stabilire la funzione di trasferimento $H(\omega)$.
+		
+		\vspace{3mm}
+		
+		Un problema legato a questo metodo di misurazione della funzione di trasferimento è che spesso, per molti sistemi, non è possibile generare un segnale impulsivo sufficientemente ideale: per questo si ricorre al determinare il rapporto delle trasformate di un segnale completamente casuale che in generale avrà modulo costante (e dunque può essere normalizzato al valore unitario) lungo tutto lo spettro.
+		
+		A questo punto esplicitando funzione di trasferimento e trasformata dell'ingresso nella componente di modulo e fase, è possibile osservare che
+		\[ Y(\omega) = M_H(\omega) e^{i\phi_H(\omega)} M_U(\omega) e^{i\phi_U(\omega)}  \]
+		Avendo ipotizzato che il modulo $M_U(\omega) = 1$ sia unitario per tutto lo spettro delle frequenze, allora è possibile riscrivere la trasformata dell'uscita dalla quale si ricava la sua relazione con il modulo della funzione di trasferimento:
+		\[ Y(\omega) = M_H(\omega) e^{i\left[\phi_H(\omega) + \phi_U(\omega)\right]}  \qquad \Rightarrow \quad  M_H(\omega) = M_Y(\omega) \]
+		
+		In questo caso il segnale in ingresso viene denominato \textbf{rumore bianco}, in quanto è un rumore sempre presente ad ogni frequenza (derivante proprio dalla luce bianca che ha uno spettro di frequenza infinito).
+		
+		A livello ideale infatti sarebbe possibile pensare di determinare la funzione di trasferimento $H(\omega)$ come il rapporto tra la risposta di un sistema e il relativo ingresso cui esso era sottoposto; nella pratica tuttavia non è possibile utilizzare un segnale qualsiasi in quanto un generico ingresso $u(t)$, se trasformato, presenterà uno spettro $U(\omega)$ e relativa risposta $Y(\omega)$ con intervalli di frequenza di modulo nullo. In generale ai segnali che si rilevano è sempre sovrapposto del rumore e dunque l'antitrasformata che si misura assume valore
+		\[ M_H(\omega) = \frac{M_Y(\omega) \pm \epsilon_y}{ M_U(\omega) \pm \epsilon_u } \quad \xrightarrow[M_U(\omega)\rightarrow 0]{M_Y(\omega) \rightarrow 0} \quad M_H(\omega) \approx \frac {\epsilon_y}{\epsilon_u} \]
+		Si osserva dunque che l'assenza di alcune armoniche nella trasformata dell'ingresso comporta un errore nel determinare il modulo della funzione di trasferimento $M_H$.		
+	
+	\subsection{Tecniche nel dominio del tempo}
+		\subsubsection{Ingressi canonici e modello matematico}
+		Supponendo di conoscere il modello matematico del sistema di misura che si vuole tarare, è possibile effettuare tale operazione tramite regressione minimizzando gli scarti quadratici medi di ingressi canonici.
+		
+		Considerando per esempio una sonda di temperatura \texttt{PT100} (filo trasduttore in platino) è possibile determinarne sia l'energia $E = mc T$ (dove $m$ è la massa di platino, $c$ la capacità termica del dispositivo e $T$ la temperatura assoluta del metallo), sia la potenza termica scambiata con il fluido in cui è immerso $P = \alpha A \big(T_f - T\big)$ (dove $\alpha$ è il coefficiente di scambio termico sull'area di contatto $A$ e $T_f$ è la temperatura del fluido che si vuole misurare). \\
+		Il flusso di calore $P$ rappresenta l'energia trasmessa nell'unità di tempo al sistema: è dunque possibile ricavare l'espressione differenziale che governa il problema in questione:
+		\[ \frac{dE}{dt} = P \qquad \rightarrow \quad mc \frac{dT}{dt}  = \alpha A \big(T_f - T \big)  \]
+		
+		Questa relazione differenziale lineare può dunque essere analizzata tramite le regole di trasformazione di Fourier; in particolare l'ingresso al sistema è la temperatura $T_f$ del fluido che si vuole misurare, mentre l'uscita che si rileva è la temperatura $T$ della sonda. Facendo il passaggio al dominio delle frequenze è possibile riscrivere l'equazione differenziale che darà vita alla funzione di trasferimento $H(\omega)$ del sistema:
+		\[ mc \, \omega T(\omega) = \alpha A \Big(T_f(\omega) - T(\omega)\Big) \qquad \Rightarrow \quad H(\omega) = \frac{T(\omega)}{T_f(\omega)} = \frac 1 {1+ i\omega \frac{mc}{\alpha A}} = \frac 1 {1+ i\omega \tau} \]
+		
+		Effettuare una taratura dinamica significa dunque determinare il rapporto $\tau = \frac {mc}{\alpha A}$ associato alla costante di tempo del transitorio del sistema.
+		
+		\vspace{3mm}
+		
+		La taratura dinamica può dunque essere fatta misurando la risposta allo scalino della sonda: tale test può essere effettuato inserendo velocemente la sonda fredda in un fluido molto caldo. Chiaramente l'inserzione del dispositivo nel bagno caldo non è un'operazione idealmente istantanea in quanto richiederà una frazione di secondo (per esempio se l'inserimento richiede $0.1s$, allora la frequenza associata sarà pari a $10Hz$), tuttavia tale effetto può essere trascurato se si osserva che la costante di tempo $\tau$ del sistema è molto più grande del tempo di inserimento (in generale $\tau \simeq 50s$ e la sua risposta in frequenza è pari a $0.02Hz$, molto minore dei $10Hz$ dell'inserimento della sonda nel bagno).
+		
+		\vspace{3mm}
+		
+		Tramite antitrasformazione è possibile determinare la soluzione dell'equazione differenziale nel dominio del tempo che risulta valere
+		\begin{equation} \label{eq:td:pt100}
+			T(t) = \left(T_\textrm{iniziale} - T_\textrm{finale}\right)e^{-t/\tau} + T_\textrm{finale}
+		\end{equation}
+	
+		\subsubsection{Determinazione della costante di tempo di un sistema dinamico}
+		A questo punto è necessario stabilire dei metodi per determinare la costante di tempo $\tau$ associata al sistema; per effettuare questa operazione di taratura è possibile, sempre facendo riferimento alla sonda di temperatura \texttt{PT100}, percorrere 3 strade distinte
+		\begin{enumerate}
+			\item Un primo metodo è quello di manipolare la soluzione dell'equazione differenziale; in particolare considerando la risposta allo scalino è possibile cercare, tramite manipolazione algebrica, quella temperatura $T(\tau)$ associata al tempo $t = \tau$ pari alla costante di tempo del sistema stesso; sostituendo infatti il valore $t= \tau$ nell'equazione \ref{eq:td:pt100} si ottiene l'espressione
+			\[ T(\tau ) = \left(T_i- T_f\right)e^{-1} + T_f \]
+			
+			Calcolando il tempo $t$ che impiega la sonda a misurare la temperatura $T(\tau)$, è possibile dunque stabilire il valore della costante di tempo.
+			
+			\item Un secondo metodo che si può utilizzare si basa sul riscalare l'asse delle ascisse in modo di avere un comportamento lineare rispetto al tempo; manipolando infatti l'equazione differenziale \eqref{eq:td:pt100} si può arrivare alla formulazione
+			\[ \frac{T(t) - T_f}{T_i-T_f} = e^{-t\tau} \qquad \Rightarrow \quad \ln \left( \frac{T(t) - T_f}{T_i-T_f}\right) = - \frac t \tau \]
+			Supponendo dunque di aver campionato la temperatura della sonda con una frequenza $f_c = 1/t_c$, è possibile riscrivere tale equazione 
+			\[ \ln \left( \frac{T(k \, t_c) - T_f}{T_i-T_f}\right) = - k \frac {t_c} \tau \qquad \forall k \ \textrm{campione}  \]
+			Si osserva dunque che questa equazione è lineare nel tempo (e nel dominio discretizzato lineare in $k$) con pendenza pari a $-t_c/\tau$: tramite interpolazione lineare è possibile dunque ricavare l'inverso della costante di tempo (noto il periodo di campionamento $T_c$).
+			
+			\item Il terzo e ultimo metodo mostrato si basa sull'effettuare la regressione ai minimi quadrati del modello del sistema (eq. \ref{eq:td:pt100}); nota la temperatura campionaria $T_k$ ottenuta dalla calibrazione, e noto il modello tramite l'equazione differenziale risolta, la taratura dinamica si basa sulla minimizzazione della somma $\Phi$ dei residui al quadrato in funzione del parametro $\tau$:
+			\[ \Phi(\tau) = \sum_{k=0}^N \left( T_k - \big(T_i-T_f\big)e^{-k t_c/ \tau} - T_f \right)^2 \]
+			Questa procedura può anche essere effettuata su sistemi di ordine maggiore con un maggior numero di parametro; in questo caso la minimizzazione sarà multivariabile.
+		\end{enumerate}
+	
+\section{Filtraggio dei segnali}
 
 	\paragraph{Filtraggio online e offline} Si parla di \textbf{filtraggio online} quando l'operazione di filtraggio viene effettuata ad ogni campione in ingresso (\textit{processing in real time}), mentre si parla di \textbf{filtraggio offline} quando il filtraggio viene effettuato sull'insieme di dati già acquisiti.
 	
@@ -370,10 +404,6 @@
 		Si osserva dunque che la funzione di trasferimento è del secondo ordine in quanto a denominatore contiene un termine $\omega^2$.
 		
 	\end{esempio}
-	
-	
-	
-	
 	
 	
 	

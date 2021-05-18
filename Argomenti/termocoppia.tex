@@ -14,3 +14,36 @@
 	
 	
 \section{Termoresistenze}
+	Le termoresistenze si basano sul fatto che la resistenza $R$ di un metallo è funzione delle temperatura $T$ cui esso è sottoposto; per esempio è possibile calcolare la resistenza in funzione dell'intervallo di temperatura secondo le leggi
+	\[ R(T_{^\circ C}) = \begin{cases}
+		R_0\big(1 + aT + bT^2 + c(T-100)^3\big) \qquad & T\in [-200^\circ C, 0^\circ C] \\
+		R_0\big(1 + aT + bT^2\big) \qquad &T\in [0^\circ C,850^\circ C] 
+	\end{cases}\]
+	dove la temperatura $T$ è espressa in gradi Celsius, $R_0$ è la resistenza del conduttore alla temperatura $0^\circ C$ e $a,b,c$ sono dei coefficienti del metallo.
+	
+	Per la realizzazione di termoresistenze in generale si utilizzano nickel, rame e platico; in particolare noi facciamo riferimento alla sonda \texttt{PT100} realizzata in platino con resistenza $R_0 = 100 \Omega$ con classe di accuratezza $A$ (più accurata) e $B$ (meno accurata).
+	
+	Per disaccoppiare dall'effetto di temperatura quello di deformazione si avvolge il filo a spirale e si immerge il metallo in una polvere di allumina che isola dalle vibrazioni pur conducendo calore (in questo modo si elimina l'effetto \textit{estensimetro}).
+	
+	Trascurando la resistenza dei fili di collegamento tra termoresistenza e apparato di misurazione, la temperatura viene misurata tramite un ponte di Wheatstone semplice. Il trascurare i cavi può portare a grossi errori in quanto aumentano la resistenza equivalente del circuito e la temperatura dei fili può modificare la temperatura che si vuole misurare. Per ovviare a questo problema, come per gli estensimetri, si effettua un collegamento a tre fili con il ponte di Wheatstone
+	
+	\textbf{AGGIUNGERE LE FIGURE} 
+	
+	Un altro problema del circuito è dovuto alla bassa resistenza della sonda; in generale dovendo essere pari a $20mA$ la corrente massima che può scorrere sull circuito, considerando le due resistenze $R_1,R_2= 100\Omega$ la tensione di alimentazione è limitata al valore
+	\[ V= I_{max} R_{eq} = 4V \]
+	
+	Un modo per ovviare a questo problema è di porre a $25V$ la tensione di alimentazione da modulare con un duty cycle in modo che la tensione media nel tempo è di $4V$.
+	
+	Un altro metodo di misurazione è quello \textbf{volt-amperometrico} con collegamento a due fili; in questo caso il circuito è alimentato da un generatore di corrente e, tramite un multimetro, si misura la differenza di tensione ai capi dei due fili. In questo caso l'uscita non è proporzionale solamente alla resistenza della sonda, ma anche a quella dei fili. \\
+	Per ridurre questo problema si utilizza lo stesso metodo ma a 4 fili
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
