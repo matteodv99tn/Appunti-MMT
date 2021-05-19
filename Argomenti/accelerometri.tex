@@ -1,0 +1,54 @@
+\chapter{Accelerometri}
+	Un \de{accelerometro} è uno strumento utilizzato per misurare l'accelerazione, rispetto ad un sistema inerziale, cui è sottoposto un corpo; per integrazione è dunque possibile stimare velocità e spostamento del corpo che si sta analizzando.
+	
+	E' possibile osservare che la velocità può essere analizzata sia come integrazione dell'accelerazione, sia tramite derivazione della posizione (misurata tramite encoder, per esempio):
+	\[ v(t) = \int a(\xi)\, d\xi \mapsto \frac 1{i\omega} A(\omega) \qquad v(t) = \frac{dx}{dt}\mapsto i X (\omega) \]
+	Osservando le relazioni è possibile osservare che la velocità ottenuta tramite integrazione dell'accelerazione di fatto moltiplica le armoniche a bassa frequenza attenuando quelle ad alta frequenza, mentre al contrario la velocità per derivazione della posizione di fatto comporta l'amplificazione delle armoniche a pulsazione elevata (eliminando quelle molto basse).
+	
+	Per integrazione dunque si ha l'attenuazione degli errori dovuti alle alte frequenze, mentre possono diventare importanti gli errori a frequenza elevata.
+	
+	
+	
+	
+	
+\section{Accelerometro a massa sismica}
+	L'accelerometro a massa sismica è uno strumento che permette di misurare il moto assoluto di una massa; la risposta in frequenza di tale dispositivo comprende le frequenze pressocché nulle fino a valori molto elevate, per questo può essere utilizzato per misurare sia accelerazioni statiche che vibrazioni e/o shock.
+	
+	Il sistema di un accelerometro a massa sismica presenta una massa $m$ che, tramite un sistema molla-smorzatore, è collegata al grado di libertà che vuole misurare. Per misurare l'accelerazione è dunque necessario misurare lo spostamento relativo della massa all'interno del suo contenitore.
+	
+	\paragraph{Blocco dell'accelerometro} Considerando di imporre un'accelerazione costante $a = \ddot x$ positiva verso l'alto, allora la forza di inerzia che si oppone sulla massa è pari a $F=m\ddot x$; tale forza dovrà essere controbilanciata opportunamente da una molla la cui forza dipende dallo spostamento relativo rispetto alla posizione di riposo $F= k \, \Delta x$.
+	\[ m\ddot x = k \, \Delta x \qquad \ddot x \xrightarrow{\frac m k} \Delta x\]
+	
+	Analizzando il sistema alle impedenze generalizzate è possibile dunque ricavare la funzione di trasferimento cui è soggetto il sistema in funzione dei parametri $m$, $k$ e $c$; per fare questo è necessario individuare i gradi di libertà associati: $B$ associato alla massa e $A$ associato alla base dello strumento. Nota la trasformata $A(\omega)$ dell'accelerazione $a(t)$ imposta alla base. Definito lo spostamento relativo $x_0 = x_A-x_B$ tra massa e base è possibile riscrivere il sistema alle impedenze generalizzate.\\
+	In particolare tra i noti $A,B$ si osserva il parallelo della molla e dello smorzatore, mentre la massa $m$ è posta tra $B$ e terra; per determinare $H(\omega) = X_0(\omega) / A(\omega)$ è necessario ricondurre l'accelerazione in ingresso ad una velocità $V(\omega)$, mentre in uscita non rileviamo la posizione relativa $X_0$ ma la velocità relativa $V_0$, e dunque la funzione di trasferimento si basa sul determinare il rapporto tra $V_{AB}$ e $V_{AT}$:
+	\begin{align*}
+		\frac{V_{AB}(\omega)}{V_{AT}(\omega)} & = \frac{\dfrac{1}{\frac{k}{i\omega} + c}}{ \dfrac{1}{\frac{k}{i\omega} + c} + i\omega m} = \frac{1}{1 + \dfrac{k}{(i\omega)^2m} + \dfrac{c}{i\omega m}} = \frac{(i\omega)^2}{(i\omega)^2 + \dfrac k m + i\omega \dfrac c m } \\
+		& = \frac{(i\omega) ^2 \dfrac m k}{1 + i\omega \dfrac c k + (i\omega)^2 \dfrac m k} \\
+		H(\omega) = \frac{X_0(\omega)}{A(\omega)} & = \frac{\dfrac{1}{i\omega} V_{AB}(\omega)}{i\omega A(\omega)} = \frac{1}{(i\omega)^2} \frac{V_{AB}(\omega)}{V_{AT}(\omega)} = \frac{ m/k}{1 + i\omega \frac c k + (i\omega)^2 \frac m k}  \\
+		&  = \frac{1 / \omega_n^2}{1+2\xi \dfrac{i\omega}{\omega_n} + \left(\dfrac{i\omega}{\omega_n}\right)^2 } \qquad \leftarrow \quad \omega_n = \sqrt{\frac k m}
+	\end{align*}
+	
+	A questo punto è necessario integrare al sistema un misuratore di spostamento relativo, tramite dei sistemi di tipo estensimetrico, a potenziometro, capacitivi...
+	
+	
+\section{Accelerometri piezo-elettrici}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
