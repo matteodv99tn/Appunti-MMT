@@ -1,20 +1,20 @@
 \chapter{Misure di deformazione mediante estensimetri}
 
 \section{Cenni sullo stato di tensione piano e triassiale}
-	Considerando uno \de{stato di tensione piano} (tensione perpendicolare al piano $\sigma_z=0$), è possibile determinare le deformazioni $\epsilon_x, \epsilon_y$ lungo gli assi $x$ e $y$ rispettivamente supponendo di conoscere le tensioni $\sigma_x,\sigma_y$ lungo gli stessi. Noto il \de{modulo di Young} $E$ e il \de{coefficiente di Poisson} $\nu$ si verifica infatti che
+	Considerando uno \de{stato di tensione piano} (tensione perpendicolare al piano $\sigma_z=0$), è possibile determinare le deformazioni $\varepsilon_x, \varepsilon_y$ lungo gli assi $x$ e $y$ rispettivamente supponendo di conoscere le tensioni $\sigma_x,\sigma_y$ lungo gli stessi. Noto il \de{modulo di Young} $E$ e il \de{coefficiente di Poisson} $\nu$ si verifica infatti che
 	\begin{equation} \label{eq:def:defpiana}
-		\epsilon_x = \frac{\sigma_x}{E} - \nu \frac{\sigma_y}{E} \qquad \epsilon_y = \frac{\sigma_y}{E} - \nu \frac{\sigma_x}{E}
+		\varepsilon_x = \frac{\sigma_x}{E} - \nu \frac{\sigma_y}{E} \qquad \varepsilon_y = \frac{\sigma_y}{E} - \nu \frac{\sigma_x}{E}
 	\end{equation}
 	
-	Le deformazioni $\epsilon$ rappresentano una variazione di lunghezza $\Delta L$ riferite ad una lunghezza $L$, e in generale si considera
-	\[ \epsilon = \frac{\Delta L}{L} \qquad \left[\frac {\mu m} m \right]\]
+	Le deformazioni $\varepsilon$ rappresentano una variazione di lunghezza $\Delta L$ riferite ad una lunghezza $L$, e in generale si considera
+	\[ \varepsilon = \frac{\Delta L}{L} \qquad \left[\frac {\mu m} m \right]\]
 	
 	Invertendo opportunamente le formule è possibile determinare le tensioni $\sigma_i$ lungo i vari assi del piano come
-	\[ \sigma_x = \frac{E \big(\epsilon_x + \nu \epsilon_y \big)}{1-\nu^2} \qquad \sigma_y = \frac{E \big(\epsilon_y + \nu \epsilon_x \big)}{1-\nu^2} \]
+	\[ \sigma_x = \frac{E \big(\varepsilon_x + \nu \varepsilon_y \big)}{1-\nu^2} \qquad \sigma_y = \frac{E \big(\varepsilon_y + \nu \varepsilon_x \big)}{1-\nu^2} \]
 	
-	\paragraph{Stato di tensione triassiale} Estendendo i concetti della deformazione di uno stato piano allo spazio, è possibile definire la deformazione $\epsilon$ lungo gli assi nello spazio riprendendo l'equazione \ref{eq:def:defpiana} riscritta come
+	\paragraph{Stato di tensione triassiale} Estendendo i concetti della deformazione di uno stato piano allo spazio, è possibile definire la deformazione $\varepsilon$ lungo gli assi nello spazio riprendendo l'equazione \ref{eq:def:defpiana} riscritta come
 	\begin{equation}
-		\epsilon_x = \frac{\sigma_x}{E} - \nu \frac{\sigma_y}{E} - \nu \frac{\sigma_z}{E} \qquad \epsilon_y = \frac{\sigma_y}{E} - \nu \frac{\sigma_x}{E} - \nu \frac{\sigma_z}{E} \qquad \epsilon_z = \frac{\sigma_z}{E} - \nu \frac{\sigma_x}{E} - \nu \frac{\sigma_y}{E}
+		\varepsilon_x = \frac{\sigma_x}{E} - \nu \frac{\sigma_y}{E} - \nu \frac{\sigma_z}{E} \qquad \varepsilon_y = \frac{\sigma_y}{E} - \nu \frac{\sigma_x}{E} - \nu \frac{\sigma_z}{E} \qquad \varepsilon_z = \frac{\sigma_z}{E} - \nu \frac{\sigma_x}{E} - \nu \frac{\sigma_y}{E}
 	\end{equation}
 
 \section{Classificazione degli estensimetri}
@@ -73,30 +73,30 @@
 		A questo punto la variazione della resistenza del conduttore può essere espressa come 
 		\[ \frac{\delta R}{R} =  \frac{\delta \rho}{\rho} + \frac{\delta l}{l} - 2\frac{\delta d}{d} \]
 		
-		Nota la deformazione assiale $\epsilon_a$ (in quanto è quella che determina la misura di deformazione), allora ad essa è associata anche una deformazione trasversale $\epsilon_t = - \nu \epsilon_a$. Considerando che $\epsilon_a$ rappresenta il termine $\delta l/l$ l'espressione della resistenza può essere riscritta come:
+		Nota la deformazione assiale $\varepsilon_a$ (in quanto è quella che determina la misura di deformazione), allora ad essa è associata anche una deformazione trasversale $\varepsilon_t = - \nu \varepsilon_a$. Considerando che $\varepsilon_a$ rappresenta il termine $\delta l/l$ l'espressione della resistenza può essere riscritta come:
 		\begin{align*}
 			\frac{\delta R}{R} =  \frac{\delta \rho}{\rho} + \frac{\delta l}{l} - 2\left( -\nu \frac{\delta l}{l} \right) & = \frac{\delta \rho}{\rho} + \frac{\delta l}{l} \big(1+2\nu\big) \\ 
-			& = \epsilon_a \frac{\delta \rho}{\rho \epsilon_a} + \epsilon_a \big(1+2\nu\big) = \epsilon_a \left( \frac{\delta \rho}{\rho \epsilon_a} +  1+2\nu\right)
+			& = \varepsilon_a \frac{\delta \rho}{\rho \varepsilon_a} + \varepsilon_a \big(1+2\nu\big) = \varepsilon_a \left( \frac{\delta \rho}{\rho \varepsilon_a} +  1+2\nu\right)
 		\end{align*}
 		
 		\begin{concetto}
 			A questo punto è possibile esprimere la \de{prima legge fondamentale dell'estensimetria} che permette di definire la \de{sensibilità dell'estensimetro} $K$:
 			\begin{equation} \label{eq:def:primalegge}
-				K = \frac{\delta R / R}{\epsilon_a} = \frac{\delta \rho}{\rho \epsilon_a} + 1 + 2\nu
+				K = \frac{\delta R / R}{\varepsilon_a} = \frac{\delta \rho}{\rho \varepsilon_a} + 1 + 2\nu
 			\end{equation} 
 		\end{concetto} 
 	
-		Il termine $1+2\nu$ rappresenta la \de{sensibilità geometrica} ed è sempre un valore costante (essendo $\nu = 0.3$ per i metalli, allora essa vale circa $1.6$), mentre il termine $\delta \rho / \rho \epsilon_a$ rappresenta la \de{sensibilità piezoresistiva} (circa 0.4 per estensimetri metallici, tra 100 e 1000 per quelli a semiconduttore). Si osserva che questo secondo termine dipende esplicitamente dalla deformazione $\epsilon_a$, e dunque può essere trascurato per piccole deformazioni, ma può diventare importante per estensioni maggiori.
+		Il termine $1+2\nu$ rappresenta la \de{sensibilità geometrica} ed è sempre un valore costante (essendo $\nu = 0.3$ per i metalli, allora essa vale circa $1.6$), mentre il termine $\delta \rho / \rho \varepsilon_a$ rappresenta la \de{sensibilità piezoresistiva} (circa 0.4 per estensimetri metallici, tra 100 e 1000 per quelli a semiconduttore). Si osserva che questo secondo termine dipende esplicitamente dalla deformazione $\varepsilon_a$, e dunque può essere trascurato per piccole deformazioni, ma può diventare importante per estensioni maggiori.
 		
 		Con questa legge è dunque possibile correlare resistenza elettrica ed estensione come
-		\[ \frac {\delta R} R = K \epsilon_a  \]
+		\[ \frac {\delta R} R = K \varepsilon_a  \]
 		
-		\paragraph{Sensibilità trasversale} Le relazioni appena indicate non considerano il fatto che gli estensimetri contengano tratti di griglia perpendicolari all'asse di misura che subiscono delle deformazioni differenti $\epsilon_t$. Tuttavia questi tratti sono pochi e di dimensioni limitati, e per questo spesso è convenienti trascurarli. 
+		\paragraph{Sensibilità trasversale} Le relazioni appena indicate non considerano il fatto che gli estensimetri contengano tratti di griglia perpendicolari all'asse di misura che subiscono delle deformazioni differenti $\varepsilon_t$. Tuttavia questi tratti sono pochi e di dimensioni limitati, e per questo spesso è convenienti trascurarli. 
 		
 		Considerando che la sezione trasversale ha una sensibilità $K_t$, è possibile determinare il \de{coefficiente di sensibilità trasversale} $S_t$ come segue che permette di ridefinire l'equazione di variazione di resistenza:
-		\[ S_t = \frac{K_t}{K} \qquad \rightarrow \frac {\delta R} R = K\big(\epsilon_a+ S_t\epsilon_t\big)  \]
+		\[ S_t = \frac{K_t}{K} \qquad \rightarrow \frac {\delta R} R = K\big(\varepsilon_a+ S_t\varepsilon_t\big)  \]
 		
-		Considerando che in generale $S_t < 1\%$ e che $\epsilon_t<\epsilon_a$, trascurando il termine dovuto alla sensibilità trasversale non comporterebbe l'introduzione di un errore significativo (per piccole deformazioni).
+		Considerando che in generale $S_t < 1\%$ e che $\varepsilon_t<\varepsilon_a$, trascurando il termine dovuto alla sensibilità trasversale non comporterebbe l'introduzione di un errore significativo (per piccole deformazioni).
 		
 	\subsection{Lettura degli estensimetri}
 	\subsubsection{Ponte di Wheatstone}
@@ -125,9 +125,9 @@
 		\[ \frac{\Delta e_0}{E} \approx \frac 1 4 \left( \frac{\Delta R_1}{R_1} - \frac{\Delta R_2}{R_2} +\frac{\Delta R_3}{R_3} - \frac{\Delta R_4}{R_4} \right) \qquad \Leftrightarrow \qquad \frac{\Delta R_i}{R_i} < 1\% \]
 		
 		\begin{concetto}
-			Ricordando che dalla prima legge fondamentale dell'estensimetria (eq. \ref{eq:def:primalegge}) $K\epsilon = \Delta R / R$, allora è possibile scrivere la \de{seconda legge fondamentale dell'estensimetria} che lega lo sbilanciamento $e_0$ del ponte di Wheatston agli allungamenti di 4 estensimetri:
+			Ricordando che dalla prima legge fondamentale dell'estensimetria (eq. \ref{eq:def:primalegge}) $K\varepsilon = \Delta R / R$, allora è possibile scrivere la \de{seconda legge fondamentale dell'estensimetria} che lega lo sbilanciamento $e_0$ del ponte di Wheatston agli allungamenti di 4 estensimetri:
 			\begin{equation}
-				\frac{\Delta e_0}{E} \approx \frac 1 4 K \big( \epsilon_1 - \epsilon_2 + \epsilon_3 - \epsilon_4  \big)
+				\frac{\Delta e_0}{E} \approx \frac 1 4 K \big( \varepsilon_1 - \varepsilon_2 + \varepsilon_3 - \varepsilon_4  \big)
 			\end{equation}
 		\end{concetto}
 		
@@ -136,11 +136,11 @@
 		\paragraph{Errori dovuti alle approssimazioni} Si è arrivati a questo risultato considerando l'approssimazione
 		\[\frac{\Delta R_1 \, \alpha}{R_m} \frac{1}{1+\Delta R_1/R_m} \approx \frac{\Delta R_1}{R_m} \]
 		Questa approssimazione deriva dal fatto che $\Delta R_1/R_m < 1\% = 10^{-2}$ può essere considerato nullo e dunque $1/1=1$. Per poter stabilire tuttavia oltre quale tensione tale errore non è più tollerabile è necessario imporre (considerando $R_m = 2R_1$)
-		\[ \frac{\Delta R_1}{2R_1} = K \frac\epsilon 2 > 10^{-2} \qquad \Rightarrow \quad \epsilon> \frac 1 K 2\cdot 10^{-2} \frac m m \simeq 10^4 \frac{\mu m}{m}  \]
+		\[ \frac{\Delta R_1}{2R_1} = K \frac\varepsilon 2 > 10^{-2} \qquad \Rightarrow \quad \varepsilon> \frac 1 K 2\cdot 10^{-2} \frac m m \simeq 10^4 \frac{\mu m}{m}  \]
 		
 	\subsection{Effetti termici}
 		In generale la temperatura ambientale può influire sulla misura di deformazione in quanto varia direttamente la resistività del filo, la lunghezza della griglia (per via della deformazione dovuta alla temperatura) modificando direttamente la \textbf{sensibilità piezoresistiva}; in particolare si era ricavato dalla prima equazione fondamentale che la sensibilità dell'estensimetro vale
-		\[ K = 1 + 2\nu + \frac{\delta \rho / \rho}{\epsilon}\]
+		\[ K = 1 + 2\nu + \frac{\delta \rho / \rho}{\varepsilon}\]
 		
 		\paragraph{Variazione di resistività} Una variazione di temperatura $\Delta T = T - T_0$ influenza direttamente la resistività del materiale (dove la condizione a pedice 0 è nota da laboratorio) secondo la legge:
 		\[ \Delta \rho = \rho_T - \rho_0 = \rho_0 \alpha_\rho \, \Delta T  \]
@@ -148,9 +148,9 @@
 		\[ \Delta R_\rho = R_\rho(T) - R_\rho(T_0) = R_0\alpha_\rho \, \Delta T  \]
 		
 		\paragraph{Variazione di lunghezza} La temperatura determina una deformazione di lunghezza $\Delta l$ dell'estensimetro a causa della dilatazione del materiale su cui è incollato l'estensimetro (coefficiente di dilatazione termica $\alpha_m$) e quello del materiale di cui è costituita la griglia (coefficiente di dilatazione $\alpha_g$):
-		\[  \Delta l = l \big(\alpha_m - \alpha_g\big) \, \Delta T \qquad \Rightarrow \quad \epsilon_{\Delta T} = \frac{\Delta l}{l} = \big(\alpha_m-\alpha_g\big) \, \Delta T  \]
+		\[  \Delta l = l \big(\alpha_m - \alpha_g\big) \, \Delta T \qquad \Rightarrow \quad \varepsilon_{\Delta T} = \frac{\Delta l}{l} = \big(\alpha_m-\alpha_g\big) \, \Delta T  \]
 		
-		Osservando che alla temperatura è associato un allungamento $\epsilon_{\Delta T}$ è possibile misurare la variazione di resistenza dovuta alla temperatura come
+		Osservando che alla temperatura è associato un allungamento $\varepsilon_{\Delta T}$ è possibile misurare la variazione di resistenza dovuta alla temperatura come
 		\[ \frac{\Delta R}{R_0} = K \big(\alpha_m-\alpha_g\big)\, \Delta T \qquad \rightarrow \Delta R = R_0 K \big(\alpha_m - \alpha_g\big) \, \Delta T   \]
 		
 		\paragraph{Combinazione degli effetti termici} Combinando gli effetti termici è possibile determinare la variazione di resistenza $\Delta R_{\Delta T}$ dovuta alla temperatura come
@@ -166,10 +166,10 @@
 		\paragraph{Compensazione tramite ponte di Wheatstone} In generale utilizzare l'auto-compensazione per ridurre l'effetto interferenze determina risultati accettabili solamente per intervalli di temperatura nell'intorno della condizione nominale dell'estensimetro. 
 		
 		Un modo per compensare gli effetti termici è dunque quello di effettuare la correzione direttamente sul ponte di Wheatstone. Infatti considerando il caso di un quarto di ponte (dove dunque le altre 3 resistenze sono costanti), la resistenza variabile associata all'estensimetro provocherà uno sbilanciamento del ponte dovuto sia all'effetto di deformazione del materiale, sia dovuto al segnale interferente dell'effetto termico:
-		\[ \frac{\Delta e_0}{E} \approx \frac 1 4 K \big(\epsilon_1 + \epsilon_{1\Delta T}\big)  \]
+		\[ \frac{\Delta e_0}{E} \approx \frac 1 4 K \big(\varepsilon_1 + \varepsilon_{1\Delta T}\big)  \]
 		
 		Questo sistema non porta alcuna compensazione, tuttavia se si considerasse un mezzo ponte di Wheatstone dove alla resistenza $R_1$ è associato un estensimetro collegato al materiale e a $R_2$ un estensimetro non collegato a nulla (seguendo lo schema del ponte a pag. \pageref{wheatstone}, figura \ref{wheatstone}), è possibile osservare come questo sistema compensi gli effetti termici:
-		\[ \frac{\Delta e_0}E \approx \frac 1 4 K \big(\epsilon_1 - \epsilon_2\big) = \frac 1 4 K \big(\epsilon_{1a} + \epsilon_{1\Delta T} - \epsilon_{2\Delta T}\big) \simeq \frac 1 4 K \epsilon_{1a} \]
+		\[ \frac{\Delta e_0}E \approx \frac 1 4 K \big(\varepsilon_1 - \varepsilon_2\big) = \frac 1 4 K \big(\varepsilon_{1a} + \varepsilon_{1\Delta T} - \varepsilon_{2\Delta T}\big) \simeq \frac 1 4 K \varepsilon_{1a} \]
 		
 		Si osserva dunque che tramite questo sistema, considerando gli estensimetri come aventi le stesse proprietà, gli effetti interferenti termici vengono automaticamente compensati dal ponte di Wheatstone.
 	
@@ -180,19 +180,19 @@
 		\[ \Delta R = \frac{R \,R_i}{R+R_i} - R = - \frac R {1 + R_i/R}  \] 
 		
 		Considerando un caso in cui la resistenza iniziale dell'estensimetro sia $R=120\Omega$ e quella dell'isolante sia $R_i = 1M\Omega$, effettuando il calcolo si ottiene che
-		\[ \frac{\Delta R}{R} = - 1.19\cdot 10^{-4} \qquad \Rightarrow \quad \epsilon = \frac{\Delta R / R}{K} \simeq -60 \frac{\mu m}{m}  \]
+		\[ \frac{\Delta R}{R} = - 1.19\cdot 10^{-4} \qquad \Rightarrow \quad \varepsilon = \frac{\Delta R / R}{K} \simeq -60 \frac{\mu m}{m}  \]
 		In questo caso si osserva dunque che l'isolamento elettrico introduce un disturbo di circa il $6\%$ su una misura di $1000 \mu m/m$.
 		
 		Considerando di aumentare la resistenza dell'isolante ad un valore $R_i = 1000 M\Omega$ allora si osserva che il disturbo dovuto alla variazione di resistenza è trascurabile in quanto di circa $0.006\%$ su una misura di $1000 \mu m / m$:
-		\[ \frac{\Delta R}{R} = -1.19\cdot 10^{-7} \qquad \Rightarrow \quad \epsilon= \frac{\Delta R/R}{K} \simeq -0.06 \frac{\mu m}{m}  \]
+		\[ \frac{\Delta R}{R} = -1.19\cdot 10^{-7} \qquad \Rightarrow \quad \varepsilon= \frac{\Delta R/R}{K} \simeq -0.06 \frac{\mu m}{m}  \]
 		
 	\subsection{Estensimetri a semiconduttore}
 		Gli \de{estensimetri a semiconduttore} invece che essere composti da una grigli di materiale conduttore sono rappresentati da una lamina di semiconduttore con drogaggio $p$ o $n$.
 		
 		Questi estensimetri hanno un'elevata sensibilità piezoresistiva e quindi una sensibilidenominatoretà $K$ più elevata (rispetto agli estensimetri a conduttore a filo) a scapito di una maggiore sensibilità alla temperatura e ad un'elevata fragilità meccanica.
 		
-		In generale la variazione della resistenza $\Delta R/R$ in funzione dell'estensione $\epsilon$ è approssimata ad una funzione polinomiale di parametri $c_i$ dipendenti dalla temperatura del tipo:
-		\[ \frac{\Delta R}{R} = c_1\epsilon + c_2 \epsilon^2 + c_3 \epsilon^3  \]
+		In generale la variazione della resistenza $\Delta R/R$ in funzione dell'estensione $\varepsilon$ è approssimata ad una funzione polinomiale di parametri $c_i$ dipendenti dalla temperatura del tipo:
+		\[ \frac{\Delta R}{R} = c_1\varepsilon + c_2 \varepsilon^2 + c_3 \varepsilon^3  \]
 		
 \section{Dinamometri}
 		
