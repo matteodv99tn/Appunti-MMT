@@ -39,11 +39,25 @@
 	
 	
 	
+\section{Noise thermometers}
+	I \de{noise termometers} fa parte dei metodi alternativi di misurazione della temperatura.  Questi strumenti si basano sulla stima del rumore (dovuto alla temperatura) correlato alla temperatura del misurando tramite stima della deviazione standard. Questo strumento si basa sul fatto che il \textit{rumore} è detto \textit{bianco} in quanto ogni componente in frequenza è presente con un modulo pressoché equivalente.
 	
 	
+	Misurando la tensione media dovuto a questo rumore si evince che essa è nulla in quanto $V_m = \frac 1 t \int_0 ^t V(\xi)\, d\xi =0$, mentre lo scarto quadratico medio si può osservare non essere nullo $\sigma^2 = \frac 1 t \int_0 ^t V^2 (\xi)\, d\xi \neq 0$.
 	
 	
+\section{Pirometri ad infrarosso}
+	I \de{pirometri ad infrarosso} si basano sulla misura pirometrica, ossia sul rilevare la radiazione elettromagnetica propria emessa dal corpo misurando; questo è dunque un sistema di misura senza contatto tra misurando e sistema di misura. 
 	
+	In particolare tramite la legge di Plank è possibile misurare la potenza $W$ trasmessa da un corpo nero in funzione della lunghezza d'onda $\lambda$ (in $\mu m$) e della temperatura $T$ (in gradi Kelvin) secondo l'equazione
+	\[ W(\lambda, T) =  \frac{ c_1  }{\lambda^5\left(e^{c_2/\lambda T} - 1\right)}\]
+	Per integrazione della potenza per unità di lunghezza rispetto allo spettro di frequenza è possibile calcolare la potenza totale irradiata dal corpo: $P = \int_\lambda W(\lambda, T)\, d\lambda$. Osservando che la lunghezza d'onda di picco segue un'equazione del tipo $\lambda_\textrm{picco} = 2891/T$, per integrazione si ricava che pa potenza è una potenza quarta della temperatura:
+	\[ P =\int_\lambda W(\lambda, T)\, d\lambda = 5.67  \cdot 10^{-12} T^4 \]
 	
+	Per i \textbf{corpi reali} il comportamento risulta essere leggermente diverso rispetto a quello ideale del corpo nero: si parla di \textit{corpo grigio} se lo spettro è attenuato di un valore costante (inferiore al valore unitario), mentre un \textit{corpo} è detto \textit{colorato} se l'attenuazione dipende dalla lunghezza d'onda che si vuole rilevare. In generale la relazione è espressa dalla funzione
+	\[ W_a(\lambda, T) =\frac{\varepsilon(\lambda,T) c_1}{\lambda^5\left(e^{c_2/\lambda T} - 1\right)} \]
+	dove $\varepsilon(\lambda, T) \in [0,1]$ è l'\textbf{emissività} del corpo. Tale fattore dipende, oltre che da $\lambda$ e $T$, anche dalla rugosità della superficie, dall'angolo rispetto al quale si effettua la rilevazione... 
+	
+	Un problema legato a questo tipo di misuratore è che lo stesso rileva anche le radiazioni riflette da altri corpi sul corpo oggetto di misura.
 	
 	
