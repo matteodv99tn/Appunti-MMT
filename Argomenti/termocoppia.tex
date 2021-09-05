@@ -1,17 +1,112 @@
 \chapter{Termocoppie e termoresistenze}
-	La misura di temperatura avviene misurando la differenza di forza elettromotrice (tensione) di una termocoppia
+\section{Termocoppie}
 	
-	\paragraph{Effetto Peltier} Quando una corrente inizia a scorrere nella termocoppia, sui giunti metallici si genera del calore (o esso viene dissipato) in modo da controbilanciare l'effetto Seebeck, anche se spesso questo effetto viene trascurato.
+	Uno particolare tipo di strumentazione per misurare la temperatura di un corpo (in particolare la differenza di temperatura tra due corpi, di cui uno è posto ad uno stato noto) è quello di utilizzare le \textbf{termocoppie}, ossia dei cavi di particolari materiali metallici. Questo tipo di sistemi di misura sono realizzati considerando i seguenti effetti elettrici:
+	\begin{itemize}
+		\item l'\textbf{effetto Volta} per il quale due cavi metallici 1 e 2 saldati nel cosiddetto \textbf{\textit{giunto della termocoppia}} determinano una tensione differenziale $V_{AB}$ che è funzione solamente dei \textbf{potenziali di estrazione} $W_i$ dei due metalli secondo la relazione
+		\begin{equation}
+			V_{AB} = W_1-W_2
+		\end{equation}
+		
+		\begin{SCfigure}[1][bht]
+			\centering
+			\includegraphics[width=5cm]{eff-volta}
+			\caption{schema di riferimento per l'effetto Volta.}
+		\end{SCfigure}
+		
+		\item l'\textbf{effetto Seebeck} invece considera il flusso di elettroni in catena chiusa; in particolare considerando due fili metallici collegati in due giunzioni poste a temperature $T_1,T_2$; nel caso in cui le due temperature fossero diverse ($T_1\neq T_2$) si osserverebbe che all'interno della catena chiusa gli elettroni inizierebbero a circolare, determinando di fatto una corrente elettrica;
 	
-	\paragraph{Effetto Thomson} L'effetto Thomson rileva la dispersione di calore dovuta al filo che collega le due termocoppie.
+		\begin{SCfigure}[1][bht]
+			\centering
+			\includegraphics[width=5cm]{eff-seebeck}
+			\caption{schema di riferimento per l'effetto Seebeck.}
+		\end{SCfigure}
+	\end{itemize}
+
+	L'idea alla base dell'utilizzo delle termocoppie è proprio quella di rilevare la differenza di tensione generata tra i due giunti, osservando che tale valore dipenderà sicuramente dalla temperatura differenziale.
+
+	\begin{SCfigure}[0.7][bht]
+		\centering
+		\includegraphics[width=8cm]{termocoppia-1}
+		\caption{implementazione di una termocoppia.}
+		\label{fig:termocoppia:schema}
+	\end{SCfigure}
 	
-	In generale
+	Facendo riferimento alla realizzazione di una termocoppia mostrata in figura \ref{fig:termocoppia:schema}, è possibile osservare come la tensione rilevata dal voltmetro, rappresentata dalla forza elettromotrice generata dalla termocoppia $fem_{t.c.}$, dipende necessariamente dalle forze elettromotrici generate dai due cavi secondo la relazione
+	\begin{equation} \label{eq:termocoppia:base}
+		fem_{t.c.} = fem_1 - fem_2
+	\end{equation}
+
+	A questo punto si osserva che se i giunti si trovano a temperature uguali ($T_1 = T_2$) allora le forze elettromotrici generate dai due metalli sono uguali, pertanto 
+	\[ T_1 = T_2 \qquad \Rightarrow \quad fem_1 = fem_2 \qquad \Rightarrow \quad fem_{t.c.} = 0  \]
 	
-	\[ fem_{termocoppia} = \underbrace{c_1 \big(T_1-T_2\big)}_\textrm{Seebeck} +\underbrace{ c_2\big(T_1^2-T_2^2\big)}_\textrm{Thomson}\]
-	dove $c_1,c_2$ sono due costanti generalmente fornite dal produttore ma che devono essere tarate per migliorare la precisione di misura. In generale i fili di connessione delle due giunzioni possono essere esposti a temperature ambientali variabili in quanto non influiscono nella misurazione della forza elettromotrice della termocoppia.
+	Al contrario se le temperatura dei giunti sono diverse ($T_1\neq T_2$) allora le forze elettromotrici sui due cavi sono diverse, e questo comporta una tensione differenziale in uscita dalla termocoppia che può essere valutata dal voltmetro:
+	\[ T_1 \gtrless T_2  \qquad \Rightarrow \quad fem_1 \gtrless fem_2 \qquad \Rightarrow \quad fem_{t.c.} \gtrless 0 \]
 	
-	Nella pratica le termocoppie sono caratterizzate dal non avere la necessità di avere un ambiente termostatato, ma si integra il controllore con un sensore di temperatura con il quale fare il confronto di temperatura; il sistema si comporta come un termometro dunque.
+	\subsection{Altri effetti termoelettrici}
+		Parlando di termocoppie è necessario anche considerare anche altri effetti termoelettrici che si instaurano nel sistema in esame. In particolare l'\textbf{effetto Peltier}, duale all'effetto Seebeck, afferma che se una termocoppia è soggetta ad un passaggio di corrente, allora sul giunto della stessa si avrà un processo di emissione/assorbimento di calore. Nella pratica questo tipo di effetto può essere trascurato nella misurazione in quanto non rilevante.
+		
+		Più rilevante può essere invece l'\textbf{effetto Thompson} che considera un'eventuale emissione/assorbimento di calore ed è dovuto alla possibile variazione del coefficiente Seebeck in funzione della temperatura lungo un filo. Tale tipo di effetto si può considerare come un effetto Peltier distribuito lungo tutta la lunghezza dei cavi che porta a riscrivere l'equazione \ref{eq:termocoppia:base} tramite la formulazione
+		\begin{equation}
+			fem_{t.c.} = \underbrace{c_1 \big(T_1-T_2\big)}_\textrm{Seebeck} +\underbrace{ c_2\big(T_1^2-T_2^2\big)}_\textrm{Thomson}
+		\end{equation}
+		dove $c_1$ è il coefficiente legato all'effetto Seebeck e $c_2$ quello legato all'effetto Thompson e in generale tali valori sono forniti dal produttore sulla base di analisi sperimentali.
+
+	\subsection{Proprietà delle termocoppie}
 	
+		Una prima proprietà fondamentale delle termocoppie è basata sul fatto che la differenza di tensione $e_u$ rilevata ai giunti della termocoppia dipende solamente dalla differenza di temperatura dei giunti stessi, ed è indipendente in ogni modo indipendente dalla temperatura sui fili (nei quali in generale essa può cambiare).
+	
+		\begin{SCfigure}[2][bht]
+			\centering
+			\includegraphics[width=4cm]{tc-prop-1}
+			\caption{in una termocoppia la differenza di potenziale $e_u$ rilavata dipende solamente dalla differenza di temperatura dei due giunti.}
+		\end{SCfigure}
+		
+		Un'altra proprietà di rilevante interesse pratico è quella che ci permette di affermare che interponendo nella termocoppia un terzo cavo metallico (come in figura \ref{fig:termocoppia:prop2}) i cui giunti con i metalli originari sono posti ad una temperatura uguale, allora la tensione differenziale rilevata dalla termocoppia rimane invariata. Questo è particolarmente utile dal punto di vista applicativo in quanto permette di effettuare la trasmissione dei segnali mediante cavi meno costosi rispetto a quelli utilizzati per la termocoppia vera e propria (che di norma sono costosi in quanto leghe molto difficili da ricavare).
+		
+		\begin{SCfigure}[2][bht]
+			\centering
+			\includegraphics[width=4cm]{tc-prop-2}
+			\caption{interponendo un terzo cavo metallico $c$ all'interno della termocoppia, se le temperature dei due nuovi giunti è uguale allora la differenza di tensione rilevata dalla termocoppia è invariante.}
+			\label{fig:termocoppia:prop2}
+		\end{SCfigure}
+		
+		Un'altra importante proprietà è quella che ci permette di tarare la termocoppia: si osserva infatti che noto il potenziale $e_c$ generato da un metallo di una termocoppia, è possibile tarare gli altri metalli combinando i vari risultati sperimentali, ossia in generale non è necessario tarare singolarmente ogni coppia di conduttori ma è sufficiente considerare le tensioni differenziali generate (come in figura \ref{fig:termocoppia:prop3}).
+		
+		\begin{figure}[bht]
+			\centering
+			\includegraphics[width=10cm]{tc-prop-4}
+			\caption{ogni termocoppia può essere tarata a partire da un metallo di riferimento.}
+			\label{fig:termocoppia:prop3}
+		\end{figure}
+		
+	\subsection{Utilizzo delle termocoppie}
+		A questo punto avendo visto che l'intromissione di cavi per il trasporto del segnale non influiscono sul segnale letto dal microvoltmetro (se la temperatura dei giunti due nuovi giunti è uguale), allora è possibile pensare di realizzare una vera e propria termocoppia di utilità pratica.
+		
+		\begin{figure}[bht]
+			\centering
+			\includegraphics[width=9cm]{termocoppia-schema}
+			\caption{implementazione di una coppia termoelettrica nella pratica.}
+			\label{fig:termocoppia}
+		\end{figure}
+	
+		Uno strumento di misura basato sulla termocoppia è esemplificato in figura \ref{fig:termocoppia} dove è possibile osservare come uno dei due giunti è posto ad una sorgente calda da valutare, mentre il secondo giunto è posto in un ambiente freddo a temperatura nota (e rispetto a tale punto parte anche il cavo di trasmissione delle informazioni). In questo modo, nota la temperatura del giunto freddo e potendo stabilire la temperatura differenziale tra i giunti mediante la caratteristica statica letta dal microvoltmetro, allora è possibile stabilire la temperatura del giunto caldo oggetto di studio.
+		
+		\paragraph{Materiali} In generale le termocoppie sono realizzate in materiali molto costosi per via delle loro proprietà; in particolare tali materiali sono classificati in vari tipi (le cui proprietà sono mostrate in figura \ref{fig:termocoppia:caratteristica}) in funzione della sensibilità della coppia metallica e del range di temperatura in cui può essere utilizzato. 	
+		
+		\begin{figure}[bht]
+			\centering
+			\includegraphics[width=9cm]{termocoppia-caratteristica}
+			\caption{caratteristica statica di varie categorie di termocoppie.}
+			\label{fig:termocoppia:caratteristica}
+		\end{figure}
+			
+		Per via del compromesso tra range di temperatura e sensibilità (ma soprattutto della linearità della caratteristica statica) dello strumento di misura, il tipo di termocoppia più utilizzato è quello di tipo $K$.
+		
+		\vspace{3mm}
+		
+		Essendo in generale i metalli costosi, nella pratica si utilizzando i metalli sopra citati solamente nei punti esposti alle alte temperature che si vogliono misurare, mentre al di fuori di tale zona critica si utilizzando dei cosiddetti \textbf{cavi compensati}, ossia cavi metallici caratterizzati da avere potenziale di estrazione pari al metallo utilizzato nella termocoppia, ma realizzati con materiali meno costosi, diminuendo il costo complessivo dello strumento di misura.
+		
 	
 \section{Termoresistenze}
 	Le termoresistenze si basano sul fatto che la resistenza $R$ di un metallo è funzione delle temperatura $T$ cui esso è sottoposto; per esempio è possibile calcolare la resistenza in funzione dell'intervallo di temperatura secondo le leggi
